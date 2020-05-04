@@ -16,7 +16,7 @@ const SearchParams = () => {
       const breedStrings = breeds.map(({ name }) => name);
       setBreeds(breedStrings);
     }, console.error);
-  }); // EVERYTHING else gets rendered first before a useEffect. Helps speed of loading website. It is asynchronous.
+  }, [animal, setBreed, setBreeds]); // EVERYTHING else gets rendered first before a useEffect. Helps speed of loading website. It is asynchronous.
 
   return (
     <div className="search-params">
