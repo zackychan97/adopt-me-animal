@@ -12,11 +12,12 @@ const SearchParams = () => {
     setBreeds([]); // Whenever this runs we want to update breeds w/ an empty array. Cause if we're requesting new breeds and there are already breeds we want them to go away.
     setBreed(""); // Whenever this runs it updates the text to an empty string so we don't have labrador cats
 
-    pet.breeds(animal).then(({ breeds }) => {
-      const breedStrings = breeds.map(({ name }) => name);
+    pet.breeds(animal).then(({ breeds: apiBreeds }) => {
+      const breedStrings = apiBreeds.map(({ name }) => name);
       setBreeds(breedStrings);
     }, console.error);
-  }, [animal, setBreed, setBreeds]); // EVERYTHING else gets rendered first before a useEffect. Helps speed of loading website. It is asynchronous.
+  }, [animal, setBreed, setBreeds]); // empty array would make useEffect render only once, no array makes it update
+  // EVERYTHING else gets rendered first before a useEffect. Helps speed of loading website. It is asynchronous. If you wanted this
 
   return (
     <div className="search-params">
